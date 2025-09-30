@@ -2,6 +2,9 @@ import { writeFile, readFile } from 'node:fs/promises';
 import { useCacheDirectiveTransformer } from './use-cache-directive.ts';
 import { join } from 'node:path';
 
+// this is just a simple script that runs the use-cache-directive.ts transformer
+// and writes the output to out.ts
+
 const indexFile = join(process.cwd(), 'index.ts');
 const outputFile = join(process.cwd(), 'out.ts');
 
