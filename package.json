@@ -1,0 +1,21 @@
+{
+  "name": "nextjs-use-cache",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "build": "tsx ./src/build.ts",
+    "dev": "tsx ./out.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@types/node": "^24.6.0",
+    "tsx": "^4.20.6"
+  },
+  "dependencies": {
+    "directive-to-hof": "^0.0.2"
+  }
+}

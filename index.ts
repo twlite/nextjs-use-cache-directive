@@ -1,0 +1,29 @@
+import { cacheLife, cacheTag, revalidateTag } from './src/use-cache.ts';
+
+async function getCurrentTime() {
+  'use cache';
+
+  cacheLife(1000);
+  cacheTag('performance.now');
+
+  console.log('Inside getCurrentTime()');
+
+  return performance.now();
+}
+
+console.log('Calling getCurrentTime()', await getCurrentTime());
+console.log('Calling getCurrentTime()', await getCurrentTime());
+
+console.log('---');
+
+setTimeout(async () => {
+  console.log('Calling getCurrentTime()', await getCurrentTime());
+  console.log('---');
+  console.log('Revalidating tag');
+  console.log('Before revalidation: ', await getCurrentTime());
+  revalidateTag('performance.now');
+  console.log('After revalidation: ', await getCurrentTime());
+  console.log('again: ', await getCurrentTime());
+
+  console.log('---');
+}, 1500);
