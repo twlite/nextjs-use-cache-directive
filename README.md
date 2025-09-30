@@ -24,8 +24,13 @@ async function fetchUserData(userId: string) {
   return userData;
 }
 
+await fetchUserData('1'); // first call, cache miss
+await fetchUserData('1'); // second call, cache hit
+await fetchUserData('2'); // different user, cache miss
+
 // for revalidation, you can call:
 revalidateTag(`user:${userId}`);
+// which deletes the cached data for the given user
 ```
 
 2. Whenever the `fetchUserData` function is called, if it has not been cached yet, it will be cached. Otherwise it will return cached data if its cache life has not expired.
