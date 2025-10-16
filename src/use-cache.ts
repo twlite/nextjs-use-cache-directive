@@ -34,10 +34,12 @@ function makeCacheKey(...args: any[]) {
 // this is a wrapper function that `'use cache'` directive compiles to
 // yes, it is a higher-order function in disguise :D
 export function useCache<F extends () => Promise<any>>(fn: F): F {
+  // distinct function id
+  const fnId = crypto.randomUUID();
   // return a wrapper function to intercept the arguments and call the original function
   const memo = ((...args) => {
     // generate a cache key from the arguments
-    const cacheKey = makeCacheKey(...args);
+    const cacheKey = `${fnId}:${makeCacheKey(...args)}`;
 
     // run the rest of the code in cache context
     return cacheContextWorker.run(
